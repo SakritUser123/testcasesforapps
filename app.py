@@ -7,4 +7,4 @@ def chat_stream(prompt):
         yield char
         time.sleep(.02)
 
-  chat_stream()
+chat_stream()
