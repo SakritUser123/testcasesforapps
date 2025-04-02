@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 # Streamed response emulator
 def response_generator():
     response = random.choice(
