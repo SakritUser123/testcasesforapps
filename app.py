@@ -1,10 +1,18 @@
-import streamlit as st
-def chat_stream(prompt):
-    response = f'You said, "{prompt}" ...interesting.'
+# Streamed response emulator
+def response_generator():
+    response = random.choice(
+        [
+            "Hello there! How can I assist you today?",
+            "Hi, human! Is there anything I can help you with?",
+            "Do you need help?",
+        ]
+    )
+    for word in response.split():
+        yield word + " "
+        time.sleep(0.05)
 
-
-    for char in response:
-        yield char
-        time.sleep(.02)
-
-st.write_stream(chat_stream())
+# Display assistant response in chat message container
+with st.chat_message("assistant"):
+    response = st.write_stream(response_generator())
+# Add assistant response to chat history
+st.session_state.messages.append({"role": "assistant", "content": response})
